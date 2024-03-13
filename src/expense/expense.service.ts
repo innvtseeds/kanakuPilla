@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Collection } from 'mongodb';
 import { IPagination, IServiceResponse } from 'src/common/Interfaces/interface';
-import { DbService } from 'src/db/db.service';
+// import { DbService } from 'src/db/db.service';
 import { Expense } from 'src/models/expense.model';
 
 @Injectable()
 export class ExpenseService {
   private readonly expenseEntity : Collection
   constructor(
-    private readonly dbService: DbService
+    // private readonly dbService: DbService
     ) {
-      this.expenseEntity = this.dbService.accessCollection('Expense')
+      // this.expenseEntity = this.dbService.accessCollection('Expense')
     }
 
   async getAllExpenses(pagination: IPagination) : Promise<IServiceResponse<Expense[]>>{

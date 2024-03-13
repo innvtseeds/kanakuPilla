@@ -1,16 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DbService } from './db/db.service';
-import * as dotenv from 'dotenv';
+import { MainDatabase } from './config/db';
 
 async function bootstrap() {
-  dotenv.config();
   const app = await NestFactory.create(AppModule);
-
-  const mongoService = app.get(DbService);
-  await mongoService.connect();
+  
+  const mainDatabase = app.get(MainDatabase);
+  await mainDatabase.connect(); // Use MainDatabase for connection
 
   await app.listen(process.env.PORT || 8000);
-
 }
+
 bootstrap();

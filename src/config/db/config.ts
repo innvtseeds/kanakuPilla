@@ -6,12 +6,25 @@ export interface DatabaseConfig {
   connectionString: string;
 }
 
+/**
+ * DB_DIALECT: WHICH TYPE OF DB TO CONNECT
+ * DB_URI: THE CONNECTION URL
+ */
 
 @Injectable()
 export class DatabaseConfigService {
   constructor(private readonly configService: ConfigService) {}
 
   get config(): DatabaseConfig {
-    return this.configService.get<DatabaseConfig>('database');
+    const dbType = this.configService.get<string>('DB_DIALECT');
+    if (!dbType) {
+      throw new Error('Missing environment variable: DB_DIALECT');
+    }
+    return {
+      type: dbType,
+      connectionString: this.configService.get<string>('DB_URI'),
+    };
   }
+  
+  
 }

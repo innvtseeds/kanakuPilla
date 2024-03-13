@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
-import { DbService } from './db/db.service';
+import { ConfigModule } from '@nestjs/config';
 import { ExpenseController } from './expense/expense.controller';
 import { ExpenseService } from './expense/expense.service';
+import { MainDatabase } from './config/db';
+import { DatabaseConfigService } from './config/db/config';
 
 
 @Module({
   controllers: [UserController, ExpenseController],
-  providers: [UserService, DbService, ExpenseService],
-  exports: [DbService]
+  providers: [UserService, ExpenseService, MainDatabase, DatabaseConfigService],
+  imports: [ConfigModule.forRoot({ isGlobal: true })],
 })
 export class AppModule {}

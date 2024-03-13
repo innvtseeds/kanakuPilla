@@ -1,11 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Database } from '..';
 // Import the library you'll use for MongoDB connection (e.g., Mongoose)
 const mongoose = require('mongoose'); // Replace with actual import
 
 
 
-abstract class MongoDatabase {
-  protected readonly logger = new Logger(this.constructor.name);
+abstract class MongoDatabase extends Database {
 
   abstract connect(): Promise<void>;
 }

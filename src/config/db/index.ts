@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Database } from '../../infra/database';
 import { MongoDatabaseImpl } from '../../infra/database/mongo';
 import { PostgresDatabaseImpl } from '../../infra/database/postgres';
-import { DatabaseConfig, DatabaseConfigService } from './config';
+import { DatabaseConfigService } from './config';
 
 @Injectable()
 export class MainDatabase {
